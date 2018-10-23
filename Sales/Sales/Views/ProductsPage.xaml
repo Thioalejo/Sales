@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sales.Views.ProductsPage"
+             Title="Productos"
+             BackgroundColor="Transparent"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+    <ContentPage.Content>
+        <StackLayout 
+            BindingContext="{Binding Products}"
+            Padding="5">
+            
+            <ListView 
+                IsRefreshing="{Binding IsRefreshing}"
+                IsPullToRefreshEnabled="True"
+                ItemsSource="{Binding Products}"
+                RefreshCommand="{Binding RefreshCommand}">
+                
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width=".5*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label 
+                                    FontAttributes="Bold"
+                                    Grid.Column="0"
+                                    Text="{Binding Description}">
+                                    
+                                </Label>
+                                <Label 
+                                    HorizontalOptions="End"
+                                    FontAttributes="Bold"
+                                    Grid.Column="1"
+                                    Text="{Binding Price}">
+
+                                </Label>
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
